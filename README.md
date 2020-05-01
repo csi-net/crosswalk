@@ -1,5 +1,5 @@
 # Construction Standards Institute (CSI) Crosswalk
-These libraries provid strongly typed calls to easily communicate with CSI's Crosswalk API platform.
+These libraries provide strongly typed calls to easily communicate with CSI's Crosswalk API platform.
 The following languages are current included and documented below.
 - C#
 - NodeJS
