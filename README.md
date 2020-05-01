@@ -83,7 +83,7 @@ foreach (CSIClassification child in parentClassification.Children)\
 (under construction: package information goes here)
 - Create a new instance of CSICrosswalkProvider with your API Key.\
 const CSICrosswalkProvider = require("./V1/CSICrosswalkProvider");\
-let provider = new CSICrosswalkProvider(AuthorizationHeaders.v1);\
+let provider = new CSICrosswalkProvider(AuthorizationHeaders.v1);
 - Make sure your API key is stored and accessed securely within your environment.
 
 ## GraphQL Examples
