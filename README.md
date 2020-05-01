@@ -11,8 +11,7 @@ The following languages are current included and documented below.
 - API Key
 
 ## Setup
-- Download this sample repository including the Crosswalk.Client.dll
-- Reference the Crosswalk.Client.dll file in your desired project
+- Use NuGet to add CSI Crosswalk to your solution.
 - Create a new instance of CSICrosswalk.Client.V1.CSICrosswalkProvider with your API Key.\
 var provider = new CSICrosswalkProvider("API Key")
 - Make sure your API key is stored and accessed securely within your environment.
@@ -37,7 +36,7 @@ CSIStandard[] standards = await provider.QueryToModels(query);\
 foreach (CSIClassification classification in standards[0].Classifications)\
 &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(classification.Title);
 
-## Use the raw GraphQL JSON yourself
+## Use the Raw GraphQL JSON Yourself
 string json = await provider.QueryToJson(query);
 
 ## REST Examples
