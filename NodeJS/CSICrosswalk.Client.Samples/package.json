@@ -1,0 +1,10 @@
+{
+  "name": "csicrosswalk.client",
+  "version": "0.0.0",
+  "description": "CSICrosswalk.Client",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {}
+}
