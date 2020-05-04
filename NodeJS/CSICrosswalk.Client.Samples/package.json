@@ -1,7 +1,7 @@
 {
-  "name": "csicrosswalk.client",
+  "name": "csicrosswalk.client.samples",
   "version": "0.0.0",
-  "description": "CSICrosswalk.Client",
+  "description": "CSICrosswalk.Client.Samples",
   "main": "app.js",
   "author": {
     "name": ""

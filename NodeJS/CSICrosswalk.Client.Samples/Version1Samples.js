@@ -1,5 +1,5 @@
-const CSICrosswalkProvider = require("./V1/CSICrosswalkProvider");
-const AuthorizationHeaders = require("./AuthorizationHeaders");
+const CSICrosswalkProvider = require("csicrosswalk.client/V1/CSICrosswalkProvider");
+const AuthorizationHeaders = require("csicrosswalk.client/AuthorizationHeaders");
 
 let provider = new CSICrosswalkProvider(AuthorizationHeaders.v1);
 
