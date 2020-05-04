@@ -34,7 +34,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />
-    <Content Include="README.md" />
     <Content Include="Version1Samples.js">
       <SubType>Code</SubType>
     </Content>
