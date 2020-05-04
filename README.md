@@ -1,8 +1,8 @@
 # Construction Standards Institute (CSI) Crosswalk
 These libraries provide strongly typed calls to easily communicate with CSI's Crosswalk API platform.
 The following languages are current included and documented below.
-- C#
-- NodeJS
+- C# (Install-Package CSICrosswalk.Client -Version 1.0.0-CI-20200429-234512)
+- NodeJS (npm-add 'csicrosswalk.client')
 
 # C# Library
 
@@ -80,9 +80,9 @@ foreach (CSIClassification child in parentClassification.Children)\
 
 ## Setup
 - Use NPM to add CSI Crosswalk to your solution.\
-(under construction: package information goes here)
+npm-add 'csicrosswalk.client'\
 - Create a new instance of CSICrosswalkProvider with your API Key.\
-const CSICrosswalkProvider = require("./V1/CSICrosswalkProvider");\
+const CSICrosswalkProvider = require("csicrosswalk.client/V1/CSICrosswalkProvider");\
 let provider = new CSICrosswalkProvider(AuthorizationHeaders.v1);
 - Make sure your API key is stored and accessed securely within your environment.
 
