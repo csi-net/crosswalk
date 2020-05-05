@@ -6,5 +6,7 @@
   "author": {
     "name": ""
   },
-  "dependencies": {}
+  "dependencies": {
+    "csicrosswalk.client": "^1.0.1"
+  }
 }
