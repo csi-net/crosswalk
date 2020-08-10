@@ -62,6 +62,16 @@ namespace CSICrosswalk.Client.Samples
                 Console.WriteLine($"---{child.Number}: {child.Title}");
             Console.WriteLine();
 
+            //List other versions of a specific classification
+            Console.WriteLine($"\"{masterFormatStandard.Name}\" \"{selectedClassification.Title}\" Other Versions:");
+            var primaryClassification = await provider.ClassificationWithRelationsByStandard(masterFormatStandard.Name, selectedClassification.Number);
+            foreach (var child in primaryClassification.OtherVersions)
+            {
+                Console.WriteLine($"---{child.Number}: {child.Title}");
+                Console.WriteLine($"------{child.Standard.Name}: {child.Standard.Version}");
+            }
+            Console.WriteLine();
+
             //Query with GraphQL
             var query = @"
 {

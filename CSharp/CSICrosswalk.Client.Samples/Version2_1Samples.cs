@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CSICrosswalk.Client.Samples
 {
-    public static class Version2Samples
+    public static class Version2_1Samples
     {
         //Version 1
         public static async Task Run()
@@ -60,6 +60,17 @@ namespace CSICrosswalk.Client.Samples
             var parentClassification = await provider.ClassificationByStandard(masterFormatStandard.Name, selectedClassification.Number);
             foreach (var child in parentClassification.Children)
                 Console.WriteLine($"---{child.Number}: {child.Title}");
+            Console.WriteLine();
+
+            //List other versions of a specific classification
+            Console.WriteLine($"\"{masterFormatStandard.Name}\" \"{selectedClassification.Title}\" Other Versions:");
+            var primaryClassification = await provider.ClassificationWithRelationsByStandard(masterFormatStandard.Name, selectedClassification.Number);
+            foreach (var child in primaryClassification.OtherVersions)
+            {
+                Console.WriteLine($"---{child.Number}: {child.Title}");
+                foreach(var childStandard in child.Standards)
+                Console.WriteLine($"------{childStandard.Name}: {childStandard.Version}");
+            }
             Console.WriteLine();
 
             //Query with GraphQL

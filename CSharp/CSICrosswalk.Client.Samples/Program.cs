@@ -7,6 +7,7 @@ namespace CSICrosswalk.Client.Samples
         static void Main(string[] args)
         {
             Version1Samples.Run().GetAwaiter().GetResult();
+            Version2_1Samples.Run().GetAwaiter().GetResult();
 
             Console.WriteLine("Done, press enter to exit");
             Console.ReadLine();
