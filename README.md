@@ -1,7 +1,7 @@
 # Construction Standards Institute (CSI) Crosswalk
 These libraries provide strongly typed calls to easily communicate with CSI's Crosswalk API platform.
 The following languages are current included and documented below.
-- C# (Install-Package CSICrosswalk.Client -Version 1.0.0-CI-20200429-234512)
+- C# (Install-Package CSICrosswalk.Client -Version 2.1.5)
 - NodeJS (npm-add 'csicrosswalk.client')
 
 # C# Library
@@ -71,6 +71,15 @@ foreach (CSIClassification classification in onmiClassClassifications)\
 CSIClassification[] parentClassification = await provider.ClassificationByStandard("MasterFormat", "08 00 00");\
 foreach (CSIClassification child in parentClassification.Children)\
 &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(child.Title);
+
+### List Other Versions of a Classification
+CSIClassification[] primaryClassification = await provider.ClassificationWithRelationsByStandard(masterFormatStandard.Name, selectedClassification.Number);\
+foreach (var child in primaryClassification.OtherVersions)\
+{\
+&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine($"{child.Number}: {child.Title}");\
+&nbsp;&nbsp;&nbsp;&nbsp;foreach(var childStandard in child.Standards)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine($"---{childStandard.Name}: {childStandard.Version}");\
+}
 
 # NodeJS Library
 
@@ -151,6 +160,16 @@ provider.classificationsByTable("OmniClass", 22, (models) => {\
 provider.classificationByStandard("MasterFormat", "08 00 00", (model) => {\
 &nbsp;&nbsp;&nbsp;&nbsp;for (let i = 0; i < model.children.length; i++) {\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(model.children[i].title);\
+&nbsp;&nbsp;&nbsp;&nbsp;}\
+});
+
+### List Other Versions of a Classification
+provider.classificationWithRelationsByStandard("MasterFormat", "46 46 00", (model) => {\
+&nbsp;&nbsp;&nbsp;&nbsp;for (let i = 0; i < model.otherversions.length; i++) {\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(model.otherversions[i].number + ": " + model.otherversions[i].title);\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (let j = 0; j < model.otherversions[i].standards.length; j++) {\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("---" + model.otherversions[i].standards[j].name + " " + model.otherversions[i].standards[j].version);\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
 &nbsp;&nbsp;&nbsp;&nbsp;}\
 });
 
