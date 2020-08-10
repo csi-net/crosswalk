@@ -1,7 +1,7 @@
-const CSICrosswalkProvider = require("csicrosswalk.client/V1/CSICrosswalkProvider");
+const CSICrosswalkProvider = require("csicrosswalk.client/V2_1/CSICrosswalkProvider");
 const AuthorizationHeaders = require("./AuthorizationHeaders");
 
-let provider = new CSICrosswalkProvider(AuthorizationHeaders.v1);
+let provider = new CSICrosswalkProvider(AuthorizationHeaders.v2_1);
 
 function standards() {
     //List all the standards
@@ -82,7 +82,9 @@ function classificationWithRelationsByStandard() {
         console.log("\"MasterFormat\" \"" + model.title + "\" Other Versions:");
         for (let i = 0; i < model.otherversions.length; i++) {
             console.log("---" + model.otherversions[i].number + ": " + model.otherversions[i].title);
-            console.log("------" + model.otherversions[i].standard.name + " " + model.otherversions[i].standard.version);
+            for (let j = 0; j < model.otherversions[i].standards.length; j++) {
+                console.log("------" + model.otherversions[i].standards[j].name + " " + model.otherversions[i].standards[j].version);
+            }
         }
         console.log("");
         graphQLQuery();

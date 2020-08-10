@@ -34,6 +34,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />
+    <Content Include="Version2_1Samples.js" />
     <Content Include="Version1Samples.js">
       <SubType>Code</SubType>
     </Content>

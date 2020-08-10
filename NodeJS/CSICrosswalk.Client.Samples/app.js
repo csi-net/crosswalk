@@ -8,5 +8,7 @@ stdin.addListener("data", function (text) {
 });
 
 const Version1Samples = require("./Version1Samples");
+const Version2_1Samples = require("./Version2_1Samples");
 
 Version1Samples();
+Version2_1Samples();

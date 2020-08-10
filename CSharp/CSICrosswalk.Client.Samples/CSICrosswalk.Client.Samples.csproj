@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CSICrosswalk.Client" Version="1.0.0-CI-20200429-234512" />
+    <PackageReference Include="CSICrosswalk.Client" Version="2.1.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
