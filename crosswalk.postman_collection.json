@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "9c4b9805-d217-4aa1-9abd-944df8f034a0",
-		"name": "Crosswalk_Demo",
+		"name": "crosswalk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -1927,12 +1927,12 @@
 									"});",
 									"",
 									"pm.test(\"Expected Models\", function(){",
-									"    let json = pm.response.json();",
+									"    json = pm.response.json();",
 									"    pm.expect(json.data.standards.length).to.be.eql(1);",
 									"    let standard = json.data.standards[0];",
 									"   ",
 									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
-									"    pm.expect(standard.tables.length).to.be.above(0);",
+									"    //pm.expect(standard.tables.length).to.be.above(0);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1945,7 +1945,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "{\n    standards(id: \"omniclass\", table: \"11\") {\n        classifications(number: \"11-11 00 00\") {\n            id\n            number\n            title\n        }\n    }\n}",
+								"query": "{\n    standards(id: \"omniclass\", table: \"11\") {\n        name\n        classifications(number: \"11-11 00 00\") {\n            id\n            number\n            title\n        }\n    }\n}",
 								"variables": ""
 							},
 							"options": {
@@ -1972,6 +1972,60 @@
 							"listen": "test",
 							"script": {
 								"id": "d7d6d258-ccfb-41cb-aefb-a6089893d785",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"41 00 00\");",
+									"    pm.expect(classification.children.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        version\n        classifications(number: \"41 00 00\") {\n            number\n            title\n            children {\n                number\n                title\n            }\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Other versions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f5bef07c-8c8e-45b0-95c1-1fabf918135d",
 								"exec": [
 									"pm.test(\"Successful Response\", function(){",
 									"   pm.response.to.have.status(200); ",
@@ -2053,7 +2107,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        version\n        classifications(number: \"23 00 00\") {\n            title\n            number\n            crosswalks {\n                number\n                title\n                standard {\n                    name\n                    version\n                }\n            }\n        }\n    }\n}",
+								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        version\n        classifications(number: \"23 00 00\") {\n            title\n            number\n            crosswalks {\n                number\n                title\n                standards {\n                    name\n                    version\n                }\n            }\n        }\n    }\n}",
 								"variables": ""
 							},
 							"options": {
@@ -2154,6 +2208,61 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "{\n    standards(id: \"masterformat\") {\n        classifications(search: \"40 05\") {\n            id\n            number\n            title\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification Other Versions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd1a514c-45ee-4cc5-ab45-550c0567411e",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"22 07 00\");",
+									"",
+									"    pm.expect(classification.otherversions.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        classifications(number: \"22 07 00\") {\n            id\n            number\n            publishdate\n            otherversions {\n                id\n                number\n                standards {\n                    name\n                    version\n                }\n                publishdate\n            }\n        }\n    }\n}",
 								"variables": ""
 							},
 							"options": {
