@@ -1,0 +1,2223 @@
+{
+	"info": {
+		"_postman_id": "9c4b9805-d217-4aa1-9abd-944df8f034a0",
+		"name": "Crosswalk_Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "REST",
+			"item": [
+				{
+					"name": "Standards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4bfb23c0-c4ae-4a1a-a1eb-d405fc68268f",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"   let json = pm.response.json();",
+									"   ",
+									"   let hasMasterFormat = false;",
+									"   let hasMasterFormat1995 = false;",
+									"   let hasOmniClass = false;",
+									"   let hasUniFormat = false;",
+									"   ",
+									"   pm.expect(json.data.standards.length).to.be.eql(4);",
+									"   ",
+									"   for(let i = 0; i < json.data.standards.length; i++){",
+									"        const item = json.data.standards[i];",
+									"        if (item.name === \"MasterFormat\")",
+									"            hasMasterFormat = true;",
+									"        else if (item.name === \"MasterFormat 1995\")",
+									"            hasMasterFormat1995 = true;",
+									"        else if (item.name === \"OmniClass\")",
+									"            hasOmniClass = true;",
+									"        else if (item.name === \"UniFormat\")",
+									"            hasUniFormat = true;            ",
+									"   }",
+									"   ",
+									"   let allStandards = hasMasterFormat && hasMasterFormat1995 && hasOmniClass && hasUniFormat;",
+									"   pm.expect(allStandards).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Standard by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ebec75d-9baf-4f9a-a778-351b62e2f8b9",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/d4c7a05f-b865-4ea7-8720-2710c2b272a9",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"d4c7a05f-b865-4ea7-8720-2710c2b272a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Standard by Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8457edb-7c88-4110-8b32-051586e62b07",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7e9f52e-657b-4514-98d9-830fdb9bdf76",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2004);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/d4c7a05f-b865-4ea7-8720-2710c2b272a9/version/9f3fe90e-c570-402d-91e5-4e533e7b5b1e",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"d4c7a05f-b865-4ea7-8720-2710c2b272a9",
+								"version",
+								"9f3fe90e-c570-402d-91e5-4e533e7b5b1e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard by Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "869be61d-abbc-4575-9035-5d1057c2a954",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2004);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/version/9f3fe90e-c570-402d-91e5-4e533e7b5b1e",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"version",
+								"9f3fe90e-c570-402d-91e5-4e533e7b5b1e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard using YYYY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e3191fa-b2b3-4afd-84ad-caeb7f0c2d26",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2016);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/version/2016",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"version",
+								"2016"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard using YYYY-MM-DD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "688cf987-e0fa-42b8-8533-6e5c3c7f9a0a",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2016);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/version/2016-04-01",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"version",
+								"2016-04-01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard using inexact date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4637ca59-3eda-4c31-863d-9695b25597a4",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2016);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/version/2017-09-09",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"version",
+								"2017-09-09"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "See All Tables in Standard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5df272d7-35af-4228-bbf3-9e031bec16fe",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.tables.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Table in Standard by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b2f7b02-a2ab-44dd-9ccb-b89e519d2107",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"11\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass/table/e9725de1-9370-47b9-a380-8aa03abbdc99",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass",
+								"table",
+								"e9725de1-9370-47b9-a380-8aa03abbdc99"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Table in Standard by Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c689246-c008-4f96-94dd-cba96cb2e49d",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"11\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass/table/11",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass",
+								"table",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Table using ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "faa6ac48-0a48-4788-9799-3015412e94de",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"11\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2013);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass/table/11/version/f8c332d1-3fe3-477a-ae47-b898d1e7582a",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass",
+								"table",
+								"11",
+								"version",
+								"f8c332d1-3fe3-477a-ae47-b898d1e7582a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Table using YYYY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8d799664-7cea-44fb-8d27-17ade6771cd4",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"11\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2013);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass/table/11/version/2013",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass",
+								"table",
+								"11",
+								"version",
+								"2013"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Table using YYYY-MM-DD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22cafdc7-f42a-4457-94da-f2a5ffe6f11c",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"11\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2013);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass/table/11/version/2013-02-26",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass",
+								"table",
+								"11",
+								"version",
+								"2013-02-26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Table using inexact date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "623c3488-09ea-4d50-837b-6b91a500d9a5",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"11\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2013);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass/table/11/version/2013-06-06",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass",
+								"table",
+								"11",
+								"version",
+								"2013-06-06"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Root Classifications for a Standard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9e8195b-3618-478d-8fe6-5ad0a9f8a001",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/classifications",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"classifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classifications for a Table",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7de7f57-f406-48f7-a65d-7f02be51a84b",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/omniclass/table/11/classifications",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"omniclass",
+								"table",
+								"11",
+								"classifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9decb1ff-2692-451a-9964-13f44548060b",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"26 00 00\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/classifications/032a5c06-88bf-4ed5-878c-8ab30c6625bf",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"classifications",
+								"032a5c06-88bf-4ed5-878c-8ab30c6625bf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification by Number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9a5a201-4d3c-4bab-8a3d-7036eb61f90d",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"26 00 00\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/classifications/26 00 00",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"classifications",
+								"26 00 00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification Search - word or phrase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ae11690-f8a4-4638-b7e3-9cdfb36a10f7",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/classifications/search/steel",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"classifications",
+								"search",
+								"steel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification Search - number fragment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a06f02d-db97-49a6-a3cf-d2499360cfc5",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/{{version}}/api/standards/masterformat/classifications/search/40 05",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"api",
+								"standards",
+								"masterformat",
+								"classifications",
+								"search",
+								"40 05"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GraphQL",
+			"item": [
+				{
+					"name": "Standards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "504d585f-e8e7-4499-aa27-24f0e59b5dec",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"   let json = pm.response.json();",
+									"   ",
+									"   let hasMasterFormat = false;",
+									"   let hasMasterFormat1995 = false;",
+									"   let hasOmniClass = false;",
+									"   let hasUniFormat = false;",
+									"   ",
+									"   pm.expect(json.data.standards.length).to.be.eql(4);",
+									"   ",
+									"   for(let i = 0; i < json.data.standards.length; i++){",
+									"        const item = json.data.standards[i];",
+									"        if (item.name === \"MasterFormat\")",
+									"            hasMasterFormat = true;",
+									"        else if (item.name === \"MasterFormat 1995\")",
+									"            hasMasterFormat1995 = true;",
+									"        else if (item.name === \"OmniClass\")",
+									"            hasOmniClass = true;",
+									"        else if (item.name === \"UniFormat\")",
+									"            hasUniFormat = true;            ",
+									"   }",
+									"   ",
+									"   let allStandards = hasMasterFormat && hasMasterFormat1995 && hasOmniClass && hasUniFormat;",
+									"   pm.expect(allStandards).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards {\n        id\n        name\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Standard by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "90af1182-d25a-44f3-8da0-2bad99d06b41",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"d4c7a05f-b865-4ea7-8720-2710c2b272a9\")  {\n        name\n        publishdate\n        version\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Standard by Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aeae5ccf-cbce-44ef-a56c-023da1202201",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        publishdate\n        version\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Other Versions for Standard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "84a3ed7d-2b1f-4dde-a49f-bbc7767e2b18",
+								"exec": [
+									"pm.test(\"Successful Response\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function () {",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(standard.otherversions.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        version\n        publishdate\n        otherversions {\n            versionid\n            version\n            publishdate\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Root Classifications for standard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c853c59d-9fed-48a4-898c-63a3377eab79",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        version\n        classifications {\n            title\n            number\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f706c44-8dfb-47dc-a3e8-359391a93340",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2004);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\", version: \"9f3fe90e-c570-402d-91e5-4e533e7b5b1e\") {\n        versionid\n        name\n        version\n        publishdate\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard using YYYY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c83b122a-0d80-456a-97e8-0df9295feb62",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2018);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\", version: \"2018\") {\n        versionid\n        name\n        version\n        publishdate\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard using YYYY-MM-DD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f20c6696-a53b-4bde-bd6a-705beee41f80",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2018);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\", version: \"2018-02-22\") {\n        versionid\n        name\n        version\n        publishdate\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Standard using inexact date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fad576a-f2af-461a-a249-d67abcb00ea9",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"MasterFormat\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2016);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\", version: \"2017-01-20\") {\n        versionid\n        name\n        version\n        publishdate\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tables in a multi-table standard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "35ecb6d8-5a37-4aa4-8514-be01cd51a374",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.tables.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\") {\n        name\n        tables {\n            id\n            number\n            name\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Table by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87164c26-f9a8-40ac-8337-4cb617bd07c9",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"13\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\", table: \"e88ad9c9-d591-4f70-85f1-b072258c1773\") {\n        tableid\n        name\n        number\n        definition\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Table by Number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0ef88fa7-08b0-4ba0-a745-ac401ecb61da",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.number).to.be.eql(\"13\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\", table: \"13\") {\n        tableid\n        name\n        number\n        definition\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Table using YYYY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "13f0b34f-eea2-48a1-bc9e-8971e2c22b89",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2013);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\", table: \"11\", version: \"2013\") {\n        tableid\n        versionid\n        name\n        definition\n        version\n        publishdate\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Table using YYYY-MM-DD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0bf2735e-2869-42ca-ae96-253e091959d7",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2013);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\", table: \"11\", version: \"2013-02-26\") {\n        tableid\n        versionid\n        name\n        definition\n        version\n        publishdate\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version of Table using inexact date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e51c6d97-27f0-497f-814b-04414bf63fbd",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(new Date(standard.publishdate).getFullYear()).to.be.eql(2013);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\", table: \"11\", version: \"2018-07-31\") {\n        tableid\n        versionid\n        name\n        definition\n        version\n        publishdate\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Root Classifications for a Table",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5be797b-a6f7-49fb-af09-d2eac68dcff4",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\", table: \"41\") {\n        name\n        number\n        version\n        classifications {\n            id\n            number\n            title\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd71520e-b002-446a-be63-2dce5b953910",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"23 00 00\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\") {\n        classifications(number: \"02ba1c11-253a-4e8f-a827-227c826e4b65\") {\n            id\n            number\n            title\n            includes\n            mayinclude\n            doesnotinclude\n            notes\n            tableref\n            synonyms\n            discussion\n            see {\n                number\n                title\n                reason\n            }\n            seealso {\n                number\n                title\n                reason\n            }\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification by Number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "58f7ef97-8273-4afa-80be-6fd66aaf8b4b",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"22 07 00\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        classifications(number: \"22 07 00\") {\n            id\n            number\n            title\n            includes\n            mayinclude\n            doesnotinclude\n            notes\n            tableref\n            synonyms\n            discussion\n            see {\n                number\n                title\n                reason\n            }\n            seealso {\n                number\n                title\n                reason\n            }\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification by Number in a multi-table standard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eda6032f-0add-45d4-92b5-8ca2b234a691",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    let json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.name).to.be.eql(\"OmniClass\");",
+									"    pm.expect(standard.tables.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"omniclass\", table: \"11\") {\n        classifications(number: \"11-11 00 00\") {\n            id\n            number\n            title\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Children Classifications for a Classification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7d6d258-ccfb-41cb-aefb-a6089893d785",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"41 00 00\");",
+									"    pm.expect(classification.children.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        version\n        classifications(number: \"41 00 00\") {\n            number\n            title\n            children {\n                number\n                title\n            }\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crosswalks for a Classification",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e4d2ce74-c417-4930-8786-d829a2678055",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.eql(1);",
+									"    let classification = standard.classifications[0];",
+									"    ",
+									"    pm.expect(classification.number).to.be.eql(\"23 00 00\");",
+									"    pm.expect(classification.crosswalks.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\")  {\n        name\n        version\n        classifications(number: \"23 00 00\") {\n            title\n            number\n            crosswalks {\n                number\n                title\n                standard {\n                    name\n                    version\n                }\n            }\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification Search - word or phrase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5d3298ad-bd59-47e5-b2d8-ad169893d4f4",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\") {\n        classifications(search: \"steel\") {\n            id\n            number\n            title\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification Search - number fragment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "19528141-9f94-449b-b1dd-9fe4420a06c3",
+								"exec": [
+									"pm.test(\"Successful Response\", function(){",
+									"   pm.response.to.have.status(200); ",
+									"});",
+									"",
+									"pm.test(\"Expected Models\", function(){",
+									"    json = pm.response.json();",
+									"    pm.expect(json.data.standards.length).to.be.eql(1);",
+									"    let standard = json.data.standards[0];",
+									"   ",
+									"    pm.expect(standard.classifications.length).to.be.above(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\n    standards(id: \"masterformat\") {\n        classifications(search: \"40 05\") {\n            id\n            number\n            title\n        }\n    }\n}",
+								"variables": ""
+							},
+							"options": {
+								"graphql": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/{{version}}/query",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"{{version}}",
+								"query"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{subscription_key}}",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7a21bfa7-4d46-4d25-938f-21629dac2e2d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "64fb7b6a-2595-4974-9f74-695ed8f0c106",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
