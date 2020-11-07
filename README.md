@@ -1,18 +1,19 @@
 # Construction Specifications Institute (CSI) Crosswalk
 These libraries provide strongly typed calls to easily communicate with CSI's Crosswalk API platform.
 The following languages are current included and documented below.
-- C# (Install-Package CSICrosswalk.Client -Version 2.1.5)
+- C# (Install-Package CSICrosswalk.Client -Version 3.0.2)
 - NodeJS (npm-add 'csicrosswalk.client')
 
 # C# Library
 
 ## Requirements
 - .NetStandard 2.0 Compatible Project
+- Newtonsoft.Json >= 12.0.3
 - API Key
 
 ## Setup
 - Use NuGet to add CSI Crosswalk to your solution.\
-Install-Package CSICrosswalk.Client -Version 1.0.0-CI-20200429-234512
+Install-Package CSICrosswalk.Client -Version 3.0.2
 - Create a new instance of CSICrosswalk.Client.V1.CSICrosswalkProvider with your API Key.\
 var provider = new CSICrosswalkProvider("API Key")
 - Make sure your API key is stored and accessed securely within your environment.
