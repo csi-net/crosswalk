@@ -1,7 +1,7 @@
 const CSICrosswalkProvider = require("csicrosswalk.client/V2_1/CSICrosswalkProvider");
 const AuthorizationHeaders = require("./AuthorizationHeaders");
 
-let provider = new CSICrosswalkProvider(AuthorizationHeaders.v2_1);
+let provider = new CSICrosswalkProvider(AuthorizationHeaders.apiKey);
 
 function standards() {
     //List all the standards

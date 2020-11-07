@@ -7,10 +7,10 @@ namespace CSICrosswalk.Client.Samples
 {
     public static class Version2_1Samples
     {
-        //Version 1
+        //Version 2.1
         public static async Task Run()
         {
-            var provider = new CSICrosswalkProvider(AuthorizationHeaders.V2_1);
+            var provider = new CSICrosswalkProvider(AuthorizationHeaders.AuthKey);
             Console.WriteLine($"Version 2.1 - ServiceUrl: {provider.ServiceUrl}");
             Console.WriteLine();
 

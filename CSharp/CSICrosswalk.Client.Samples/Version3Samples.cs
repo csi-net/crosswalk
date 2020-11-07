@@ -1,17 +1,17 @@
-﻿using CSICrosswalk.Client.V1;
+﻿using CSICrosswalk.Client.V3;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CSICrosswalk.Client.Samples
 {
-    public static class Version1Samples
+    public static class Version3Samples
     {
-        //Version 1
+        //Version 3
         public static async Task Run()
         {
             var provider = new CSICrosswalkProvider(AuthorizationHeaders.AuthKey);
-            Console.WriteLine($"Version 1 - ServiceUrl: {provider.ServiceUrl}");
+            Console.WriteLine($"Version 3 - ServiceUrl: {provider.ServiceUrl}");
             Console.WriteLine();
 
             //List all the standards
@@ -68,7 +68,8 @@ namespace CSICrosswalk.Client.Samples
             foreach (var child in primaryClassification.OtherVersions)
             {
                 Console.WriteLine($"---{child.Number}: {child.Title}");
-                Console.WriteLine($"------{child.Standard.Name}: {child.Standard.Version}");
+                foreach(var childStandard in child.Standards)
+                Console.WriteLine($"------{childStandard.Name}: {childStandard.Version}");
             }
             Console.WriteLine();
 
@@ -83,6 +84,7 @@ namespace CSICrosswalk.Client.Samples
             publishdate
             title
             number
+            haschildren
         }
     }
 }
