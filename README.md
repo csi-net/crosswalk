@@ -12,7 +12,7 @@ The following languages are current included and documented below.
 - API Key
 
 ## Setup
-- Use NuGet to add CSI Crosswalk to your solution.\
+- Use NuGet to add Crosswalk to your solution.\
 Install-Package CSICrosswalk.Client -Version 3.0.2
 - Create a new instance of CSICrosswalk.Client.V1.CSICrosswalkProvider with your API Key.\
 var provider = new CSICrosswalkProvider("API Key")
@@ -89,7 +89,7 @@ foreach (var child in primaryClassification.OtherVersions)\
 - API Key
 
 ## Setup
-- Use NPM to add CSI Crosswalk to your solution.\
+- Use NPM to add Crosswalk to your solution.\
 npm-add 'csicrosswalk.client'\
 - Create a new instance of CSICrosswalkProvider with your API Key.\
 const CSICrosswalkProvider = require("csicrosswalk.client/V1/CSICrosswalkProvider");\
