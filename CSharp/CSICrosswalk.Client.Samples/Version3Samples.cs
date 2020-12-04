@@ -76,7 +76,7 @@ namespace CSICrosswalk.Client.Samples
             //Query with GraphQL
             var query = @"
 {
-    standards(id: ""MasterFormat"" version: ""2018"") {
+    standards(id: ""MasterFormat"" version: ""2020"") {
         name
         classifications {
             id
@@ -84,7 +84,6 @@ namespace CSICrosswalk.Client.Samples
             publishdate
             title
             number
-            haschildren
         }
     }
 }
