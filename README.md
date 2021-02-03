@@ -1,7 +1,7 @@
 # Crosswalk
 These libraries provide strongly typed calls to easily communicate with Crosswalk's API platform.
 The following languages are current included and documented below.
-- C# (Install-Package CSICrosswalk.Client -Version 3.0.12)
+- C# (Install-Package CSICrosswalk.Client -Version 3.0.13)
 - NodeJS (npm-add 'csicrosswalk.client')
 
 # C# Library
