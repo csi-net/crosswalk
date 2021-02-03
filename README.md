@@ -13,7 +13,7 @@ The following languages are current included and documented below.
 
 ## Setup
 - Use NuGet to add Crosswalk to your solution.\
-Install-Package CSICrosswalk.Client -Version 3.0.12
+Install-Package CSICrosswalk.Client -Version 3.0.13
 - Create a new instance of CSICrosswalk.Client.V1.CSICrosswalkProvider with your API Key.\
 var provider = new CSICrosswalkProvider("API Key")
 - Make sure your API key is stored and accessed securely within your environment.
