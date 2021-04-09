@@ -7,6 +7,6 @@
     "name": ""
   },
   "dependencies": {
-    "csicrosswalk.client": "^3.0.4"
+    "csicrosswalk.client": "^3.0.5"
   }
 }
