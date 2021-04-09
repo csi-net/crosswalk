@@ -1,7 +1,7 @@
 # Crosswalk
 These libraries provide strongly typed calls to easily communicate with Crosswalk's API platform.
 The following languages are current included and documented below.
-- C# (Install-Package CSICrosswalk.Client -Version 3.0.15)
+- C# (Install-Package CSICrosswalk.Client -Version 3.0.16)
 - NodeJS (npm-add 'csicrosswalk.client')
 
 # C# Library
@@ -13,7 +13,7 @@ The following languages are current included and documented below.
 
 ## Setup
 - Use NuGet to add Crosswalk to your solution.\
-Install-Package CSICrosswalk.Client -Version 3.0.15
+Install-Package CSICrosswalk.Client -Version 3.0.16
 - Create a new instance of CSICrosswalk.Client.V1.CSICrosswalkProvider with your API Key.\
 var provider = new CSICrosswalkProvider("API Key")
 - Make sure your API key is stored and accessed securely within your environment.
